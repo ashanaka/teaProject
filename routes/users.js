@@ -11,21 +11,21 @@ const User = mongoose.model('users');
 
 // User Register Route
 router.get('/add', (req, res) => {
-    res.render('users/add');
-  });
+  res.render('users/add');
+});
 // Register Form POST
 router.post('/register', (req, res) => {
   let errors = [];
 
-  if(req.body.password != req.body.password2){
-    errors.push({text:'Passwords do not match'});
+  if (req.body.password != req.body.password2) {
+    errors.push({ text: 'Passwords do not match' });
   }
 
-  if(req.body.password.length < 4){
-    errors.push({text:'Password must be at least 4 characters'});
+  if (req.body.password.length < 4) {
+    errors.push({ text: 'Password must be at least 4 characters' });
   }
 
-  if(errors.length > 0){
+  if (errors.length > 0) {
     res.render('users/add', {
       errors: errors,
       name: req.body.name,
@@ -34,9 +34,9 @@ router.post('/register', (req, res) => {
       password2: req.body.password2
     });
   } else {
-    User.findOne({email: req.body.email})
+    User.findOne({ email: req.body.email })
       .then(user => {
-        if(user){
+        if (user) {
           req.flash('error_msg', 'Email already regsitered');
           res.redirect('/users/add');
         } else {
@@ -45,10 +45,10 @@ router.post('/register', (req, res) => {
             email: req.body.email,
             password: req.body.password
           });
-          
+
           bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
-              if(err) throw err;
+              if (err) throw err;
               newUser.password = hash;
               newUser.save()
                 .then(user => {
@@ -68,16 +68,23 @@ router.post('/register', (req, res) => {
 
 // User Login Route
 router.get('/login', (req, res) => {
-  console.log(req.user)
   res.render('users/login');
 });
 // Login Form POST
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect:'/',
+    successRedirect: '/',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
 });
 
-  module.exports = router;
+
+// Logout User
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('/users/login');
+});
+
+module.exports = router;

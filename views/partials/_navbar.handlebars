@@ -10,20 +10,24 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">About</a>
+            </li>
+            {{#if user}}
+            <li class="nav-item">
+                <a class="nav-link" href="/employees/add">Add Employees</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="/employees">View Employees</a>
             </li>
-
+            {{/if}}
         </ul>
         <ul class="navbar-nav ml-auto">
             {{#if user}}
             <li class="nav-item">
-                <a class="nav-link" href="#">Hi,{{user.name}}</a>
+                <a class="nav-link" href="#">Hi, {{user.name}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/users/logout">Logout</a>
             </li>
             {{else}}
             <li class="nav-item">

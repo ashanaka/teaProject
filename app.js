@@ -26,6 +26,7 @@ app.use(passport.session());
 
 // Load routes
 const users = require('./routes/users');
+const employees = require('./routes/employees');
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
@@ -40,7 +41,7 @@ require('./config/passport')(passport);
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/vidjot-dev', {
+mongoose.connect('mongodb://localhost/teaMgt-dev', {
     //   useMongoClient: true
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -77,6 +78,7 @@ app.get('/', (req, res) => {
 
 // Use routes
 app.use('/users', users);
+app.use('/employees', employees);
 
 
 //create the prot and listen
