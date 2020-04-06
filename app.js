@@ -2,6 +2,8 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
 const session = require('express-session');
+const Handlebars = require('handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -27,7 +29,8 @@ const users = require('./routes/users');
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
 }));
 app.set('view engine', 'handlebars');
 
