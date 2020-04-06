@@ -47,4 +47,49 @@ router.get('/', (req, res) => {
 });
 
 
+// Edit Employee PUT process
+router.put('/edit/:id', (req, res) => {
+    Employee.findOne({
+        _id: req.params.id
+    })
+        .then(employee => {
+            // new values
+            employee.name = req.body.name;
+
+            employee.save()
+                .then(employee => {
+                    req.flash('success_msg', 'Employee updated');
+                    res.redirect('/employees');
+                })
+        });
+});
+// Edit Idea Form
+router.get('/edit/:id', (req, res) => {
+    Employee.findOne({
+        _id: req.params.id
+    })
+        .then(employee => {
+            if (employee.user != req.user.id) {
+                req.flash('error_msg', 'Not Authorized');
+                res.redirect('/employees');
+            } else {
+                res.render('employees/edit', {
+                    employee: employee
+                });
+            }
+
+        });
+});
+
+
+// Delete Employee
+router.delete('/:id', (req, res) => {
+    Employee.remove({ _id: req.params.id })
+        .then(() => {
+            req.flash('success_msg', 'Employee removed');
+            res.redirect('/employees');
+        });
+});
+
+
 module.exports = router;

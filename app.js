@@ -7,6 +7,7 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
 // const path = require('path');
 const passport = require('passport');
 
@@ -23,6 +24,9 @@ app.use(session({
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Method override middleware
+app.use(methodOverride('_method'));
 
 // Load routes
 const users = require('./routes/users');
