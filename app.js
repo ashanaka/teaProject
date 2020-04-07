@@ -92,7 +92,7 @@ app.use('/details', details);
 
 
 //create the prot and listen
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 app.listen(port, process.env.IP, () => {
     console.log(`Server started on port ${port}`);
