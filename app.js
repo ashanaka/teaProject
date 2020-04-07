@@ -64,9 +64,7 @@ require('./config/passport')(passport);
 mongoose.Promise = global.Promise;
 // Connect to mongoose
 mongoose.connect('mongodb+srv://jpashanshanaka:jpashanshanaka@cluster0-4pohn.mongodb.net/test?retryWrites=true&w=majority' || 'mongodb://localhost/teaMgt-dev', {
-    //   useMongoClient: true
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+      useMongoClient: true
 })
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
