@@ -49,7 +49,7 @@ require('./config/passport')(passport);
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/teaMgt-dev', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/teaMgt-dev', {
     //   useMongoClient: true
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -91,7 +91,7 @@ app.use('/details', details);
 
 
 //create the prot and listen
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
