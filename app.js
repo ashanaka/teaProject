@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
-// const path = require('path');
+const path = require('path');
 const passport = require('passport');
 
 const app = express();
@@ -20,6 +20,9 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+// Static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Passport middleware
 app.use(passport.initialize());

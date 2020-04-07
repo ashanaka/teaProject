@@ -20,14 +20,14 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="lastPayment">Last Payment (Rs)</label>
-                    <input type="text" class="form-control" value="{{detail.lastPayment}}" name="lastPayment">
+                    <label for="lastPayment">Last Bill Payment (Rs)</label>
+                    <input type="text" class="form-control" value="{{detail.lastPayment}}" name="lastPayment" readonly>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="toBePaid">To Be Paid (Rs)</label>
-                    <input type="text" class="form-control" value="0" name="toBePaid">
+                    <input type="text" class="form-control" value="{{tobepaid}}" name="toBePaid" readonly>
                 </div>
             </div>
         </div>
@@ -35,6 +35,8 @@
         <hr class="my-4">
     <p class="lead">
         <button class="btn btn-dark btn-lg" name="update" value="update" type="submit">Update</button>
+        <button class="btn btn-danger btn-lg" name="update" value="payment">Mark As Paid</button>
+        <span class="display-20 float-right mt-2"> Rs {{user.amountPerKG}} /= Per KG</span>
     </p>
   </form>
 </div>
