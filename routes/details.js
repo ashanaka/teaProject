@@ -43,9 +43,16 @@ router.put('/edit/:id', (req, res) => {
     })
         .then(detail => {
             // new values
-            detail.kiloGrams = Number(detail.kiloGrams) + kilograms;
-            detail.loanAmount = Number(detail.loanAmount) + loanamount;
-            detail.lastPayment = Number(detail.lastPayment) + lastpayment;
+            if (req.body.update == 'update'){
+                detail.kiloGrams = Number(req.body.amount);
+                detail.loanAmount = Number(req.body.loan);
+                detail.lastPayment = Number(req.body.lastPayment);
+            }else{
+                detail.kiloGrams = Number(detail.kiloGrams) + kilograms;
+                detail.loanAmount = Number(detail.loanAmount) + loanamount;
+                detail.lastPayment = Number(detail.lastPayment) + lastpayment;
+            }
+            
             detail.save()
                 .then(detail => {
                     req.flash('success_msg', 'Data Updated');

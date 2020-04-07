@@ -1,6 +1,7 @@
 <div class="jumbotron">
   <h3 class="display-6 mb-3">{{employee.name}}</h3>
-  <form action="#" method="POST">
+  <form action="/details/edit/{{detail.user}}?_method=PUT" method="POST">
+      <input type="hidden" name="_method" value="PUT">
       <div class="row">
           <div class="col-sm-6">
               <div class="form-group">
@@ -33,7 +34,7 @@
         
         <hr class="my-4">
     <p class="lead">
-        <button class="btn btn-dark btn-lg" type="submit">Update</button>
+        <button class="btn btn-dark btn-lg" name="update" value="update" type="submit">Update</button>
     </p>
   </form>
 </div>
