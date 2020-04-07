@@ -94,8 +94,12 @@ router.get('/edit/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     Employee.remove({ _id: req.params.id })
         .then(() => {
-            req.flash('success_msg', 'Employee removed');
-            res.redirect('/employees');
+            Detail.remove({user: req.params.id
+            })
+            .then(() => {
+                req.flash('success_msg', 'Employee removed');
+                res.redirect('/employees');
+            });
         });
 });
 
