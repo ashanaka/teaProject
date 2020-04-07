@@ -14,6 +14,8 @@ require('dotenv').config()
 
 const app = express();
 
+app.listen(process.env.PORT, process.env.IP);
+
 // Express session midleware
 app.use(cookieParser());
 app.use(session({
@@ -92,8 +94,7 @@ app.use('/details', details);
 
 
 //create the prot and listen
-const port = process.env.PORT;
 
-app.listen(port, process.env.IP, () => {
-    console.log(`Server started on port ${port}`);
-});
+// app.listen(process.env.PORT, process.env.IP, function(){
+//     console.log('started');
+// });
