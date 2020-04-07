@@ -49,7 +49,7 @@ require('./config/passport')(passport);
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/teaMgt-dev', {
+mongoose.connect('mongodb+srv://ashansjp:ashansjp@cluster0-souik.mongodb.net/test?retryWrites=true&w=majority' || 'mongodb://localhost/teaMgt-dev', {
     //   useMongoClient: true
     useNewUrlParser: true,
     useUnifiedTopology: true
