@@ -50,26 +50,26 @@ app.set('view engine', 'handlebars');
 require('./config/passport')(passport);
 
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://ashansjp:ashansjp@cluster0-souik.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://ashansjp:ashansjp@cluster0-souik.mongodb.net/test?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
 
 
-// // Map global promise - get rid of warning
-// mongoose.Promise = global.Promise;
-// // Connect to mongoose
-// mongoose.connect('mongodb://ashansjp:ashansjp@cluster0-souik.mongodb.net/test?retryWrites=true&w=majority' || 'mongodb://localhost/teaMgt-dev', {
-//     //   useMongoClient: true
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// })
-//     .then(() => console.log('MongoDB Connected...'))
-//     .catch(err => console.log(err));
+// Map global promise - get rid of warning
+mongoose.Promise = global.Promise;
+// Connect to mongoose
+mongoose.connect('mongodb+srv://ashansjp:ashansjp@cluster0-souik.mongodb.net/test?retryWrites=true&w=majority' || 'mongodb://localhost/teaMgt-dev', {
+    //   useMongoClient: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => console.log('MongoDB Connected...'))
+    .catch(err => console.log(err));
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
