@@ -31,7 +31,8 @@ router.post('/register', (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      password2: req.body.password2
+      password2: req.body.password2,
+      amountPerKG: req.body.amountPerKG
     });
   } else {
     User.findOne({ email: req.body.email })
@@ -43,7 +44,8 @@ router.post('/register', (req, res) => {
           const newUser = new User({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            amountPerKG: req.body.amountPerKG
           });
 
           bcrypt.genSalt(10, (err, salt) => {
@@ -64,6 +66,42 @@ router.post('/register', (req, res) => {
         }
       });
   }
+});
+
+// Edit User PUT process
+router.put('/edit/:id', (req, res) => {
+  User.findOne({
+      _id: req.params.id
+  })
+      .then(user => {
+          // new values
+          user.name = req.body.name;
+          user.email = req.body.email;
+          user.amountPerKG = req.body.amountPerKG;
+
+          user.save()
+              .then(user => {
+                  req.flash('success_msg', 'User data updated');
+                  res.redirect('/');
+              })
+      });
+});
+// Edit User Form
+router.get('/edit/:id', (req, res) => {
+  User.findOne({
+      _id: req.params.id
+  })
+      .then(user => {
+          if (user.id != req.user.id) {
+              req.flash('error_msg', 'Not Authorized');
+              res.redirect('/employees');
+          } else {
+              res.render('users/edit', {
+                  user: user
+              });
+          }
+
+      });
 });
 
 // User Login Route

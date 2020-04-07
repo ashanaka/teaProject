@@ -31,6 +31,7 @@ app.use(methodOverride('_method'));
 // Load routes
 const users = require('./routes/users');
 const employees = require('./routes/employees');
+const details = require('./routes/details');
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
@@ -83,6 +84,7 @@ app.get('/', (req, res) => {
 // Use routes
 app.use('/users', users);
 app.use('/employees', employees);
+app.use('/details', details);
 
 
 //create the prot and listen

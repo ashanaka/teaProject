@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 // Load Employee Model
 require('../models/Employee');
+require('../models/Detail')
 const Employee = mongoose.model('employees');
+const Detail = mongoose.model('details');
 
 // Employee Register Route
 router.get('/add', (req, res) => {
@@ -29,9 +31,15 @@ router.post('/add', (req, res) => {
 
         newEmployee.save()
             .then(employee => {
-                req.flash('success_msg', 'New employee added');
-                res.redirect('/employees');
-            })
+                const newDetail = new Detail({
+                    user: employee.id
+                });
+                newDetail.save()
+                .then( detail => {
+                    req.flash('success_msg', 'New employee added');
+                    res.redirect('/employees');
+                });
+            });
     }
 });
 

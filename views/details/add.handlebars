@@ -1,0 +1,42 @@
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Loan</th>
+            <th>View</th>
+        </tr>
+        {{#each employees}}
+        <tr>
+            <td>
+                {{name}}
+            </td>
+            <td>
+                <form action="/details/edit/{{id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="text" name="amount">
+                        <button class="btn btn-dark btn-sm mb-2 mt-1" type="submit">Add</button>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form action="/details/edit/{{id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="form-group">
+                        <label for="loan">Loan</label>
+                        <input type="text" name="loan">
+                        <button class="btn btn-dark btn-sm mb-2 mt-1" type="submit">Add</button>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <a class="btn btn-warning btn-sm mb-2 mt-1" href="/details/view/{{id}}">View</a>
+            </td>
+        </tr>
+        {{else}}
+        <p>No employees</p>
+        {{/each}}
+    </table>
+</div>

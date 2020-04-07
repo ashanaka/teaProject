@@ -1,0 +1,39 @@
+<div class="jumbotron">
+  <h3 class="display-6 mb-3">{{employee.name}}</h3>
+  <form action="#" method="POST">
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="form-group">
+                    <label for="amount">Amount (kg)</label>
+                    <input type="text" class="form-control" value="{{detail.kiloGrams}}" name="amount">
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="form-group">
+                    <label for="loan">Loan (Rs)</label>
+                    <input type="text" class="form-control" value="{{detail.loanAmount}}" name="loan">
+              </div>
+          </div>
+      </div>
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="lastPayment">Last Payment (Rs)</label>
+                    <input type="text" class="form-control" value="{{detail.lastPayment}}" name="lastPayment">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="toBePaid">To Be Paid (Rs)</label>
+                    <input type="text" class="form-control" value="0" name="toBePaid">
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+    <p class="lead">
+        <button class="btn btn-dark btn-lg" type="submit">Update</button>
+    </p>
+  </form>
+</div>

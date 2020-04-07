@@ -14,17 +14,20 @@
             </li>
             {{#if user}}
             <li class="nav-item">
-                <a class="nav-link" href="/employees/add">Add Employees</a>
+                <a class="nav-link" href="/employees/add"> | Add Employees</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/employees">View Employees</a>
+                <a class="nav-link" href="/employees"> | View Employees</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/details/add"> | Add Details</a>
             </li>
             {{/if}}
         </ul>
         <ul class="navbar-nav ml-auto">
             {{#if user}}
             <li class="nav-item">
-                <a class="nav-link" href="#">Hi, {{user.name}}</a>
+                <a class="nav-link" href="/users/edit/{{user.id}}">Hi, {{user.name}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/users/logout">Logout</a>

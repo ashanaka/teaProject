@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card card-body mt-3">
+      <h3 class="text-center">Account Details</h3>
+      <form action="/users/edit/{{user.id}}?_method=PUT" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" value="{{user.name}}" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" class="form-control" value="{{user.email}}" required>
+        </div>
+        <div class="form-group">
+          <label for="amountPerKG">Amount Per Kg</label>
+          <input type="number" name="amountPerKG" class="form-control" value="{{user.amountPerKG}}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
