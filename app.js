@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const path = require('path');
 const passport = require('passport');
+require('dotenv').config()
 
 const app = express();
 
