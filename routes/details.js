@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const {ensureAuthenticated} = require('../helpers/auth');
 
 
 // Load Employee Model
@@ -9,7 +10,7 @@ const Detail = mongoose.model('details');
 const Employee = mongoose.model('employees');
 
 // view the employee list to add or edit details
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
     Employee.find({ user: req.user.id })
         .sort({ date: 'desc' })
         .then(employees => {
@@ -20,7 +21,7 @@ router.get('/add', (req, res) => {
 });
 
 //View Employee details
-router.get('/view/:id', (req, res) => {
+router.get('/view/:id', ensureAuthenticated, (req, res) => {
     Employee.findOne({_id: req.params.id})
     .then(employee => {
         Detail.findOne({user: employee.id})
@@ -40,7 +41,7 @@ router.get('/view/:id', (req, res) => {
 });
 
 //Update Details from Add Details form
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', ensureAuthenticated, (req, res) => {
     let kilograms = Number(req.body.amount) || 0;
     let loanamount = Number(req.body.loan) || 0;
     let lastpayment = Number(req.body.lastPayment) || 0;

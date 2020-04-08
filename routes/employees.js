@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+const {ensureAuthenticated} = require('../helpers/auth');
 
 // Load Employee Model
 require('../models/Employee');
@@ -10,11 +10,11 @@ const Employee = mongoose.model('employees');
 const Detail = mongoose.model('details');
 
 // Employee Register Route
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('employees/add');
 });
 // Add Employee POST
-router.post('/add', (req, res) => {
+router.post('/add', ensureAuthenticated, (req, res) => {
     let errors = [];
 
     if (!req.body.name) {
@@ -44,7 +44,7 @@ router.post('/add', (req, res) => {
 });
 
 // View Employee List
-router.get('/', (req, res) => {
+router.get('/', ensureAuthenticated, (req, res) => {
     Employee.find({ user: req.user.id })
         .sort({ date: 'desc' })
         .then(employees => {
@@ -56,7 +56,7 @@ router.get('/', (req, res) => {
 
 
 // Edit Employee PUT process
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', ensureAuthenticated, (req, res) => {
     Employee.findOne({
         _id: req.params.id
     })
@@ -72,7 +72,7 @@ router.put('/edit/:id', (req, res) => {
         });
 });
 // Edit Idea Form
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     Employee.findOne({
         _id: req.params.id
     })
@@ -91,7 +91,7 @@ router.get('/edit/:id', (req, res) => {
 
 
 // Delete Employee
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ensureAuthenticated, (req, res) => {
     Employee.remove({ _id: req.params.id })
         .then(() => {
             Detail.remove({user: req.params.id
