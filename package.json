@@ -1,6 +1,9 @@
 {
   "name": "e_learning_project",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.16.3"
+  },
   "description": "Online teaching and learning platform",
   "main": "app.js",
   "scripts": {
