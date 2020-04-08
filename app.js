@@ -14,7 +14,7 @@ require('dotenv').config()
 
 const app = express();
 
-app.listen(process.env.PORT || 5000, process.env.IP);
+
 
 // Express session midleware
 app.use(cookieParser());
@@ -51,19 +51,21 @@ require('./config/passport')(passport);
 
 
 // const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://ashansjp:ashansjp@cluster0-souik.mongodb.net/test?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
+// const uri = "mongodb+srv://jpashanshanaka:jpashanshanaka@cluster0-4pohn.mongodb.net/test?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
+//   console.log(err);
 //   // perform actions on the collection object
 //   client.close();
 // });
 
-
+// 'mongodb+srv://jpashanshanaka:jpashanshanaka@cluster0-4pohn.mongodb.net/test?retryWrites=true&w=majority'
+// || 'mongodb://localhost/teaMgt-dev'
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect('mongodb+srv://jpashanshanaka:jpashanshanaka@cluster0-4pohn.mongodb.net/test?retryWrites=true&w=majority' || 'mongodb://localhost/teaMgt-dev', {
+mongoose.connect('mongodb+srv://jpashanshanaka:jpashanshanaka@cluster0-4pohn.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -110,3 +112,5 @@ app.use('/details', details);
 // app.listen(process.env.PORT, process.env.IP, function(){
 //     console.log('started');
 // });
+
+app.listen(process.env.PORT || 5000, process.env.IP);
